@@ -8,9 +8,13 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/styles.css">
+  
+
+
     <title>Locallinker</title>
   </head>
   <body style="height: 2000px;">
+    <!-- Navbar Section -->
     <nav class="navbar navbar-expand-sm navbar-light container-fluid bg-light" >
       <div class="container">
         <a class="navbar-brand mb-0 h1" href="#">
@@ -40,34 +44,140 @@
             </ul>
             <div class="btn-toolbar ms-auto" role="toolbar" aria-label="Toolbar with button groups">
               <div class="btn-group me-2" role="group" aria-label="First group">
-                  <button type="button" class="btn " style="background-color: #57CC99; color: aliceblue;">Sign In</button>
+                  <button type="button" class="btn" style="background-color: #8FA998; color: white;">Sign In</button>
               </div>
               <div class="btn-group me-2" role="group" aria-label="First group">
-                  <button type="button" class="btn btn-light" >Register</button>
+                  <button type="button" class="btn" style="background-color: #38A3A5; color: white;" >Register</button>
               </div>
              </div>
         </div>
       </div>
       </nav>
 
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="hero-content">
+                <div class="hero-text">
+                  <h1>Discover Local Services That Make Life Easier</h1>
+                  <p>Find Trusted Professionals for Every Need, Right in Your Neighborhood</p>
+                  <a href="#" class="btn">Find Services</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <img src="../static/Images/blinds-5928692_1280.jpg" alt="home-service" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <!-- Featured services section -->
 
+      <section class="py-5">
+        <div class="container">
+          <h2 class="text-center mb-4">Featured Services</h2>
+          <div class="row">
+            <div class="col-lg-4 mb-4">
+              <a href="service1.html" class="text-decoration-none">
+                <div class="card">
+                  <img src="https://via.placeholder.com/300" class="card-img-top" alt="Service 1">
+                  <div class="card-body">
+                    <h5 class="card-title">Service 1</h5>
+                    <p class="card-text">Description of Service 1.</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-4 mb-4">
+              <a href="service2.html" class="text-decoration-none">
+                <div class="card">
+                  <img src="https://via.placeholder.com/300" class="card-img-top" alt="Service 2">
+                  <div class="card-body">
+                    <h5 class="card-title">Service 2</h5>
+                    <p class="card-text">Description of Service 2.</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-4 mb-4">
+              <a href="service3.html" class="text-decoration-none">
+                <div class="card">
+                  <img src="https://via.placeholder.com/300" class="card-img-top" alt="Service 3">
+                  <div class="card-body">
+                    <h5 class="card-title">Service 3</h5>
+                    <p class="card-text">Description of Service 3.</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Call to action Section -->
 
+      <section class="cta-section bg-primary text-white py-5">
+        <div class="container text-center">
+          <h2 class="mb-4">Take Action Now!</h2>
+          <p class="lead mb-4">Discover top-quality services tailored to your needs. Sign up today!</p>
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <a href="#" class="btn btn-outline-light btn-lg btn-block mb-3">Sign Up Now</a>
+            </div>
+            <div class="col-md-4">
+              <a href="#" class="btn btn-light btn-lg btn-block mb-3">Browse Services</a>
+            </div>
+            <div class="col-md-4">
+              <a href="#" class="btn btn-outline-light btn-lg btn-block mb-3">Contact Support</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- footer section -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <footer class="bg-dark text-white py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <h5>Contact Information</h5>
+              <p>Email: info@example.com</p>
+              <p>Phone: +1234567890</p>
+              <p>Address: 123 Main St, City, Country</p>
+            </div>
+            <div class="col-md-4">
+              <h5>Social Media</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h5>Legal</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Cookie Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          <hr class="my-4">
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="list-inline text-center">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="#">About Us</a></li>
+                <li class="list-inline-item"><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

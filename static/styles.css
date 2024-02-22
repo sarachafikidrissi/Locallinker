@@ -2,3 +2,40 @@
     border-bottom: 1px solid lightgrey;
     padding: 10px;
 }
+.navbar .btn {
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.hero {
+    background-color: #f8f9fa;
+    padding: 100px 0;
+  }
+  .hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .hero-text {
+    max-width: 400px;
+  }
+  .hero img {
+    border-radius: 5px;
+    
+  }
+
+  .hero-text h1{
+    font-weight:bolder;
+    color: #4F345A;
+  }
+
+  .hero-text p{
+    font-weight: lighter;
+    color: #4F345A;
+  }
+
+  .hero .btn {
+    background-color: #38A3A5;
+    color: white;
+    padding: 15px;
+  }
