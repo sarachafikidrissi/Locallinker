@@ -15,10 +15,14 @@ body {
     border-radius: 10px;
   }
 
-  .container .btn {
+  .login-form .btn {
     background-color: #4F345A;
 }
 
-.container h2 {
+.login-form .btn:hover {
+  background-color: hsl(283, 28%, 48%);
+}
+
+.login-form legend {
     color: #4F345A;
 }
