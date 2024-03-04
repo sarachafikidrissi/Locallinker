@@ -1,0 +1,26 @@
+body {
+    background-image: url('../static/Images/homerepairing.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+nav {
+    background-color: aliceblue;
+    color: #4F345A;
+}
+.navbar .btn {
+    background-color: #4F345A;
+}
+.navbar .btn:hover{
+    background-color: hsl(283, 28%, 48%);
+}
+
+.row a {
+    background-color: #4F345A;
+    
+}
+
+.row a:hover{
+    background-color: hsl(283, 28%, 48%);
+    
+}
