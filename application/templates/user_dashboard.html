@@ -51,6 +51,9 @@
             </ul>
             <div class="btn-toolbar ms-auto" role="toolbar" aria-label="Toolbar with button groups">
               {% if current_user.is_authenticated %}
+              <!-- <div class="btn-group me-2" role="group" aria-label="First group">
+                <a href="{{ url_for('user_dashboard') }}"><button type="button" class="btn" style="background-color: #8FA998; color: white;">Account</button></a>
+            </div> -->
               <div class="btn-group me-2" role="group" aria-label="First group">
                 <a href="{{ url_for('logout') }}"><button type="button" class="btn" style="background-color: #8FA998; color: white;">Logout</button></a>
             </div>
@@ -69,44 +72,7 @@
 
       <!-- Hero Section -->
       <section class="hero">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8">
-              {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                  {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">
-                      {{ message }}
-                    </div>
-                  {% endfor %}
-                {% endif %}
-              {% endwith %}
-              {% block content %}{% endblock %}
-            </div>
-            <div class="col-lg-6">
-              <div class="hero-content">
-                <div class="hero-text">
-                  <h1>Discover Local Services That Make Life Easier</h1>
-                  <p>Find Trusted Professionals for Every Need, Right in Your Neighborhood</p>
-                  <a href="#" class="btn">Find Services</a>
-                  <form action="search_results.html" method="GET" class="d-flex">
-                    <div class="col-sm-6 mb-3">
-                      <input type="text" class="form-control" name="location" placeholder="Location">
-                    </div>
-                    <div class="col-sm-6 mb-3">
-                      <input type="text" class="form-control" name="service" placeholder="Service">
-                    </div>
-                    <button type="submit" class="btn custom-btn">Search</button>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="hero-img">
-                <img src="../static/Images/herosection.svg" alt="Services Image">
-              </div>
-          </div>
-        </div>
+        <h1>{{ current_user.username }} Dashboard</h1>
       </section>
 
       <!-- Featured services section -->

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Provider Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom CSS */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .dashboard-header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 20px;
+    }
+    .dashboard-content {
+      padding: 20px;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Dashboard Header -->
+<header class="dashboard-header">
+  <div class="container">
+    <h1 class="text-center">Service Provider Dashboard</h1>
+  </div>
+</header>
+<section class="hero">
+  <h1>{{ current_user.username }} Dashboard</h1>
+</section>
+<!-- Dashboard Content -->
+<section class="dashboard-content">
+  <div class="container">
+    <div class="row">
+      <!-- Service Listings -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Service Listings</h5>
+            <p class="card-text">Manage your service listings here.</p>
+            <a href="{{ url_for('services') }}" class="btn btn-primary">View Listings</a>
+          </div>
+        </div>
+      </div>
+      <!-- Booking Requests -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Booking Requests</h5>
+            <p class="card-text">View and manage booking requests.</p>
+            <a href="#" class="btn btn-primary">View Requests</a>
+          </div>
+        </div>
+      </div>
+      <!-- Communication -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Communication</h5>
+            <p class="card-text">Communicate with users here.</p>
+            <a href="#" class="btn btn-primary">Communicate</a>
+          </div>
+        </div>
+      </div>
+      <!-- Earnings -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Earnings</h5>
+            <p class="card-text">Track your earnings here.</p>
+            <a href="#" class="btn btn-primary">View Earnings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

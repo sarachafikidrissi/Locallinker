@@ -8,9 +8,16 @@ body {
     justify-content: center;
     align-items: center;
   }
-.signin-form {
+.signin-form{
     
     background-color: aliceblue;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .provider{
+    
+    background-color:rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 10px;
   }
@@ -24,5 +31,53 @@ body {
 }
 .signin-form legend {
     color: #4F345A;
+}
+
+
+.row .card {
+  background-color:rgba(255, 255, 255, 0.8);
+  width: 400px;
+}
+
+.row p, .row h3 {
+  color: #4F345A;
+}
+
+.card a{
+ background-color: #4F345A;
+}
+.card a:hover {
+  background-color: hsl(283, 28%, 48%);;
+}
+
+.dropdown-arrow-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-arrow-wrapper {
+  position: relative;
+}
+
+.dropdown-arrow-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 5px; 
+  transform: translateY(-50%);
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.dropdown-arrow-wrapper::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 

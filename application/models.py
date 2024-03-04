@@ -11,10 +11,11 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now())
-
+    user_type = db.Column(db.String(20), nullable=False, default='regular') 
     
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
+
     
 class Service(db.Model):
     id = db.Column(db.Integer, primary_key=True)

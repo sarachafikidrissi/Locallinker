@@ -11,7 +11,7 @@
 <body>
 <div class="signin-form">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-14">
             {% with messages = get_flashed_messages(with_categories=true) %}
               {% if messages %}
                 {% for category, message in messages %}
@@ -80,6 +80,16 @@
                   {{ form.confirm_password(class="form-control form-control-lg") }}
               {% endif %}
           </div>
+          <div class="form-group">
+            <label for="user_type">User Type</label>
+            <div class="dropdown-arrow-wrapper">
+                <select name="user_type" id="user_type" class="form-control">
+                    {% for value, label in form.user_type.choices %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
       </fieldset>
       <div class="form-group">
           {{ form.submit(class="btn text-light mt-2") }}
