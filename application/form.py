@@ -12,6 +12,7 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     user_type = SelectField('User Type', choices=[('regular', 'Regular'), ('provider', 'Provider')], validators=[DataRequired()])
+    service = SelectField('Your Primary Service', choices=[('home cleaning' ,'Home Cleaning'), ('plumbing' ,'plumbing'), ('handy man' ,'Handy man'), ('event planning' ,'Event Planning'), ('assembly' ,'Assembly'), ('electrical' ,'Electrical')], validators=[DataRequired()])
     
 
     submit = SubmitField('Sign up')

@@ -12,6 +12,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now())
     user_type = db.Column(db.String(20), nullable=False, default='regular') 
+    service= db.Column(db.String(20), nullable=False, default='Home') 
     
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
