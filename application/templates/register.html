@@ -90,7 +90,7 @@
                 </select>
             </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="serviceField" style="display: none;">
                 <label for="service">Your Primary Service</label>
                 <div class="dropdown-arrow-wrapper">
                     <select name="service" id="service" class="form-control">
@@ -111,5 +111,18 @@
     </small>
   </div>
 </div>
+
+<script>
+    document.getElementById('user_type').addEventListener('change', function () {
+        var userType = this.value;
+        var serviceField = document.getElementById('serviceField');
+
+        if (userType === 'provider') {
+            serviceField.style.display = 'block';
+        } else {
+            serviceField.style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>
