@@ -15,12 +15,17 @@ nav {
     background-color: hsl(283, 28%, 48%);
 }
 
-.row a {
+.row .btn {
     background-color: #4F345A;
+    margin-top: 10px;
     
 }
 
-.row a:hover{
+.row .btn:hover{
     background-color: hsl(283, 28%, 48%);
     
+}
+
+.row .list-group {
+    margin-top: 10px;
 }
