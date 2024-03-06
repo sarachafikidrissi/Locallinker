@@ -77,13 +77,13 @@ def register():
             if service_data:
                 service = Service(
                     provider_id=user.id,
-                    title=user.service,
+                    title=form.service.data,
                     description=service_data.get('description', ''),
                     price=service_data.get('price', 0.0)
                 )
                 db.session.add(service)
                 db.session.commit()
-            return redirect(url_for('login'))
+        return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
 
@@ -125,6 +125,6 @@ def provider_dashboard():
 @app.route('/services')
 def services():
     services = Service.query.all()
-    return render_template('services.html', title='Services', services=services)
+    return render_template('services.html', title='Services', services=services, service_list=services_data)
 
 
