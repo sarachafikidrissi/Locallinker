@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, session, request
+from flask import render_template, url_for, flash, redirect, session
 from application import app, db, bcrypt
 from application.form import RegistrationForm, LoginForm
 from application.models import User, Service, Booking, Review, SubService
@@ -72,8 +72,20 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You ar now able to log in', 'success')
-        return redirect(url_for('login'))
+        if user.user_type == 'provider':
+            service_data = services_data.get(user.service)
+            if service_data:
+                service = Service(
+                    provider_id=user.id,
+                    title=user.service,
+                    description=service_data.get('description', ''),
+                    price=service_data.get('price', 0.0)
+                )
+                db.session.add(service)
+                db.session.commit()
+            return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -113,5 +125,6 @@ def provider_dashboard():
 @app.route('/services')
 def services():
     services = Service.query.all()
-    return render_template('services.html', title='Services', service_list=services_data)
+    return render_template('services.html', title='Services', services=services)
+
 
