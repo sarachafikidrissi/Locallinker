@@ -19,7 +19,7 @@
       </form>
     </div>
   </nav>
-  <div class="container">
+  <!-- <div class="container">
   <div class="row">
     <div class="col-md-6">
       <div class="card mt-5" style="width: 60%; margin-left: 30%;">
@@ -31,9 +31,13 @@
             <a href="#" class="list-group-item list-group-item-action ">Home Cleaning</a>
             <a href="#" class="list-group-item list-group-item-action">Houskeeping</a>
           </div>
-          <a href="#" class="btn text-light">See details</a>
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('user_dashboard') }}" class="btn text-light">Book this Service</a>
+          {% else %}
+          <a href="{{ url_for('login') }}" class="btn text-light">Book this Service</a>
+          {% endif %}
         </div>
-        
+         
       </div>
       
     </div>
@@ -47,7 +51,7 @@
             <a href="#" class="list-group-item list-group-item-action ">Toilet Repair</a>
             <a href="#" class="list-group-item list-group-item-action">Unclog Toilet</a>
           </div>
-          <a href="#" class="btn text-light">See details</a>
+          <a href="#" class="btn text-light">Book this Service</a>
         </div>
       </div>
     </div>
@@ -61,7 +65,7 @@
             <a href="#" class="list-group-item list-group-item-action ">DJ Services</a>
             <a href="#" class="list-group-item list-group-item-action">Event Marketer</a>
           </div>
-          <a href="#" class="btn text-light">See details</a>
+          <a href="#" class="btn text-light">Book this Service</a>
         </div>
       </div>
     </div>
@@ -75,7 +79,7 @@
             <a href="#" class="list-group-item list-group-item-action ">Furniture Assembly</a>
             <a href="#" class="list-group-item list-group-item-action">Grill Assembly</a>
           </div>
-          <a href="#" class="btn text-light">See details</a>
+          <a href="#" class="btn text-light">Book this Service</a>
         </div>
       </div>
     </div>
@@ -89,7 +93,7 @@
             <a href="#" class="list-group-item list-group-item-action ">Outlet Installation</a>
             <a href="#" class="list-group-item list-group-item-action">Light Fixtures</a>
           </div>
-          <a href="#" class="btn text-light">See details</a>
+          <a href="#" class="btn text-light">Book this Service</a>
         </div>
       </div>
     </div>
@@ -103,12 +107,40 @@
             <a href="#" class="list-group-item list-group-item-action">Locks Installation</a>
             <a href="#" class="list-group-item list-group-item-action">TV Mounting</a>
           </div>
-          <a href="#" class="btn text-light">See details</a>
+          <a href="#" class="btn text-light">Book this Service</a>
         </div>
       </div>
     </div>
   </div>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    {% for service, sub_services in service_list.items() %}
+    <div class="col-md-6">
+      <div class="card mt-5" style="width: 60%; margin-left: 30%;">
+        <div class="card-body service">
+          <h5 class="card-title text-center">{{ service }}</h5>
+          <!-- You can add image here -->
+          <img src="../static/Images/{{ service }}.jpg" class="card-img-top">
+          <div class="list-group">
+            {% for sub_service in sub_services %}
+            <a href="#" class="list-group-item list-group-item-action">{{ sub_service }}</a>
+            {% endfor %}
+          </div>
+          <!-- You can handle booking button dynamically as per your requirement -->
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('user_dashboard') }}" class="btn text-light">Book this Service</a>
+          {% else %}
+          <a href="{{ url_for('login') }}" class="btn text-light">Book this Service</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
+
 <script type="text/javascript">
   function search() {
       let filter = document.getElementById('find').value.toUpperCase();
@@ -117,6 +149,7 @@
       items.forEach(function(item) {
           let title = item.querySelector('.card-title').textContent.toUpperCase();
           let listItems = item.querySelectorAll('.list-group-item');
+
 
           if (title.includes(filter)) {
               item.style.display = "";

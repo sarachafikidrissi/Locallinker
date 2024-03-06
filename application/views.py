@@ -1,12 +1,19 @@
 from flask import render_template, url_for, flash, redirect, session, request
 from application import app, db, bcrypt
 from application.form import RegistrationForm, LoginForm
-from application.models import User, Service, Booking, Review
+from application.models import User, Service, Booking, Review, SubService
 from flask_login import login_user, current_user, logout_user
 
 
 
-
+services_data = {
+    "Home Cleaning": ["Bedroom Cleaning", "Home Cleaning", "Housekeeping"],
+    "Plumbing": ["Drain Repair", "Toilet Repair", "Unclog Toilet"],
+    "Event Planning": ["Wedding Planner", "DJ Services", "Event Marketer"],
+    "Assembly": ["Desk Assembly", "Furniture Assembly", "Grill Assembly"],
+    "Electrical": ["Light Switch Installation", "Outlet Installation", "Light Fixtures"],
+    "General Handyman": ["Handy Helper", "Locks Installation", "TV Mounting"]
+}
 
 @app.route('/')
 @app.route('/home')
@@ -68,4 +75,6 @@ def provider_dashboard():
 
 @app.route('/services')
 def services():
-    return render_template('services.html', title='Services')
+    services = Service.query.all()
+    return render_template('services.html', title='Services', service_list=services_data)
+

@@ -37,4 +37,3 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Rememebr Me')
 
     submit = SubmitField('Login')
-
