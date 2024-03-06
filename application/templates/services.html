@@ -100,7 +100,7 @@
           <img src="../static/Images/handyman-3546193_1280.jpg" class="card-img-top">
           <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action">Handy Helper</a>
-            <a href="#" class="list-group-item list-group-item-action ">Locks Installation</a>
+            <a href="#" class="list-group-item list-group-item-action">Locks Installation</a>
             <a href="#" class="list-group-item list-group-item-action">TV Mounting</a>
           </div>
           <a href="#" class="btn text-light">See details</a>
@@ -109,23 +109,29 @@
     </div>
   </div>
 </div>
-  <script type="text/javascript">
-    function search() {
-    let filter = document.getElementById('find').value.toUpperCase();
-    let item = document.querySelectorAll('.service');
-    let l = document.getElementsByTagName('h5');
-    for(var i = 0;i<=l.length;i++){
-    let a=item[i].getElementsByTagName('h5')[0];
-    let value=a.innerHTML || a.innerText || a.textContent;
-    if(value.toUpperCase().indexOf(filter) > -1) {
-    item[i].style.display="";
-    }
-    else
-    {
-    item[i].style.display="none";
-    }
-    }
-    }
-    </script>
+<script type="text/javascript">
+  function search() {
+      let filter = document.getElementById('find').value.toUpperCase();
+      let items = document.querySelectorAll('.service');
+      
+      items.forEach(function(item) {
+          let title = item.querySelector('.card-title').textContent.toUpperCase();
+          let listItems = item.querySelectorAll('.list-group-item');
+
+          if (title.includes(filter)) {
+              item.style.display = "";
+          } else {
+              let found = false;
+              listItems.forEach(function(listItem) {
+                  if (listItem.textContent.toUpperCase().includes(filter)) {
+                      found = true;
+                  }
+              });
+              item.style.display = found ? "" : "none";
+          }
+      });
+  }
+</script>
 </body>
 </html>
+c
