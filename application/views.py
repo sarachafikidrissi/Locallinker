@@ -7,13 +7,50 @@ from flask_login import login_user, current_user, logout_user
 
 
 services_data = {
-    "Home Cleaning": ["Bedroom Cleaning", "Home Cleaning", "Housekeeping"],
-    "Plumbing": ["Drain Repair", "Toilet Repair", "Unclog Toilet"],
-    "Event Planning": ["Wedding Planner", "DJ Services", "Event Marketer"],
-    "Assembly": ["Desk Assembly", "Furniture Assembly", "Grill Assembly"],
-    "Electrical": ["Light Switch Installation", "Outlet Installation", "Light Fixtures"],
-    "General Handyman": ["Handy Helper", "Locks Installation", "TV Mounting"]
+    "Home Cleaning": {
+        "provider_id": None,  # Placeholder for provider_id, to be populated later
+        "title": "Home Cleaning",
+        "description": "Professional home cleaning services including bedroom cleaning, home cleaning, and housekeeping.",
+        "price": 50.00,
+        "sub_services": ["Bedroom Cleaning", "Home Cleaning", "Housekeeping"]
+    },
+    "Plumbing": {
+        "provider_id": None,
+        "title": "Plumbing",
+        "description": "Professional plumbing services including drain repair, toilet repair, and unclog toilet.",
+        "price": 75.00,
+        "sub_services": ["Drain Repair", "Toilet Repair", "Unclog Toilet"]
+    },
+    "Event Planning": {
+        "provider_id": None,
+        "title": "Event Planning",
+        "description": "Professional event planning services including wedding planner, DJ services, and event marketer.",
+        "price": 100.00,
+        "sub_services": ["Wedding Planner", "DJ Services", "Event Marketer"]
+    },
+    "Assembly": {
+        "provider_id": None,
+        "title": "Assembly",
+        "description": "Professional assembly services including desk assembly, furniture assembly, and grill assembly.",
+        "price": 60.00,
+        "sub_services": ["Desk Assembly", "Furniture Assembly", "Grill Assembly"]
+    },
+    "Electrical": {
+        "provider_id": None,
+        "title": "Electrical",
+        "description": "Professional electrical services including light switch installation, outlet installation, and light fixtures.",
+        "price": 80.00,
+        "sub_services": ["Light Switch Installation", "Outlet Installation", "Light Fixtures"]
+    },
+    "General Handyman": {
+        "provider_id": None,
+        "title": "General Handyman",
+        "description": "Professional handyman services including handy helper, locks installation, and TV mounting.",
+        "price": 70.00,
+        "sub_services": ["Handy Helper", "Locks Installation", "TV Mounting"]
+    }
 }
+
 
 @app.route('/')
 @app.route('/home')
