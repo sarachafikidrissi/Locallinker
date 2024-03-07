@@ -1,4 +1,5 @@
 from flask import render_template, url_for, flash, redirect
+from sqlalchemy import func
 from application import app, db, bcrypt
 from application.form import RegistrationForm, LoginForm
 from application.models import User, Service, Booking, Review
@@ -92,6 +93,13 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You ar now able to log in', 'success')
+
+        # If the registered user is a provider, update the provider_id in the Service table
+        if user.user_type == 'provider':
+            service = Service.query.filter(func.lower(Service.title) == user_service).first()
+            if service:
+                service.provider_id = user.id
+                db.session.commit()
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
