@@ -29,12 +29,6 @@ class Service(db.Model):
     created_at = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now())
 
 
-class SubService(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=False)
-    title = db.Column(db.String(100), nullable=False)
-
-
 class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

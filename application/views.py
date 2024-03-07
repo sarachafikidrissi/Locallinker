@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect
 from application import app, db, bcrypt
 from application.form import RegistrationForm, LoginForm
-from application.models import User, Service, Booking, Review, SubService
+from application.models import User, Service, Booking, Review
 from flask_login import login_user, current_user, logout_user
 
 
@@ -91,11 +91,6 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=hashed_password, user_type=user_type, service=user_service)
         db.session.add(user)
         db.session.commit()
-
-        current_user_id = user.id
-        for service_name, service_info in services_data.items():
-            if user_type == 'provider' and user_service == service_name:
-                service_info['provider_id'] = current_user_id
         flash('Your account has been created! You ar now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
