@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, session
+from flask import render_template, url_for, flash, redirect
 from application import app, db, bcrypt
 from application.form import RegistrationForm, LoginForm
 from application.models import User, Service, Booking, Review, SubService
@@ -8,7 +8,7 @@ from flask_login import login_user, current_user, logout_user
 
 services_data = {
     "Home Cleaning": {
-        "provider_id": None,  # Placeholder for provider_id, to be populated later
+        "provider_id": None,
         "title": "Home Cleaning",
         "description": "Professional home cleaning services including bedroom cleaning, home cleaning, and housekeeping.",
         "price": 50.00,
@@ -51,6 +51,25 @@ services_data = {
     }
 }
 
+def add_services_to_database():
+    for service_name, service_info in services_data.items():
+        # Check if the service already exists in the database
+        existing_service = Service.query.filter_by(title=service_name).first()
+        if existing_service is None:
+            # Service does not exist, so add it to the database
+            service = Service(
+                title=service_name,
+                description=service_info["description"],
+                price=service_info["price"]
+                
+            )
+            db.session.add(service)
+    db.session.commit()
+
+
+
+with app.app_context():
+    add_services_to_database()
 
 @app.route('/')
 @app.route('/home')
@@ -68,21 +87,16 @@ def register():
         if user_type not in ['regular', 'provider']:
             flash('Invalid user type', 'error')
             return redirect(url_for('register'))
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password, user_type=user_type)
+        user_service = form.service.data
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password, user_type=user_type, service=user_service)
         db.session.add(user)
         db.session.commit()
+
+        current_user_id = user.id
+        for service_name, service_info in services_data.items():
+            if user_type == 'provider' and user_service == service_name:
+                service_info['provider_id'] = current_user_id
         flash('Your account has been created! You ar now able to log in', 'success')
-        if user.user_type == 'provider':
-            service_data = services_data.get(user.service)
-            if service_data:
-                service = Service(
-                    provider_id=user.id,
-                    title=form.service.data,
-                    description=service_data.get('description', ''),
-                    price=service_data.get('price', 0.0)
-                )
-                db.session.add(service)
-                db.session.commit()
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 

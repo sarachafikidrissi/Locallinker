@@ -1,6 +1,8 @@
 from application import db, login_manager
 from flask_login import UserMixin
 
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -26,7 +28,6 @@ class Service(db.Model):
     price = db.Column(db.Float, nullable=True)
     created_at = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now())
 
-    provider = db.relationship('User', backref=db.backref('services', lazy=True))
 
 class SubService(db.Model):
     id = db.Column(db.Integer, primary_key=True)
