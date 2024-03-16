@@ -62,6 +62,8 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 ## Screenshots
 
 ![Home Page Screenshot](screenshots/home-page.png)
+![Login Page Screenshot](screenshots/login-page.png)
+![Registration PageScreenshot](screenshots/registration-page.png)
 
 ## Resources
 
