@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, session
 from sqlalchemy import func
 from application import app, db, bcrypt
 from application.form import RegistrationForm, LoginForm
