@@ -61,7 +61,7 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ## Screenshots
 
-![Screenshot 1](../Locallinker/screenshots/home-page.png)
+![Home Page Screenshot](screenshots/home-page.png)
 
 ## Resources
 
