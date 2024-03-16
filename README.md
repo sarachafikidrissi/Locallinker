@@ -11,9 +11,11 @@ Our project is all about bringing people together in their local community. We'r
 
 ### Authors
 
-- Sara Chafik idrissi https://www.linkedin.com/in/sara-chafik-idrissi/
+- [Sara Chafik idrissi](https://www.linkedin.com/in/sara-chafik-idrissi/)
 
-## Installation
+
+## Usage
+### Installation
 
 To run Locallinker locally, follow these steps:
 
@@ -30,12 +32,12 @@ To run Locallinker locally, follow these steps:
     ```bash
     pip install -r requirements.txt
 
-4. Run the application:
+### Getting Started
+1. Run the application:
     ```bash
     python run.py
-## Usage
+2. Open your web browser and go to http://localhost:5000 to access the application.
 
-[Provide instructions on how to use your project. Include examples and screenshots if possible.]
 
 ## Contributing
 
@@ -52,7 +54,7 @@ We welcome contributions to Locallinker. To contribute, follow these steps:
 
 Here are some related projects and resources that you may find useful or interesting:
 
-- Flask Blog https://github.com/CoreyMSchafer/code_snippets/tree/master/Python/Flask_Blog: This is a simple Blog website made using Flask 
+- [Flask Blog](https://github.com/CoreyMSchafer/code_snippets/tree/master/Python/Flask_Blog): This is a simple Blog website made using Flask 
 
 
 ## Licensing
@@ -67,6 +69,7 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ## Resources
 
-- [What your code repository says about you](https://thoughtbot.com/blog/what-your-github-repo-says-about-you)
-- [Here’s an awesome list of READMEs](https://github.com/matiassingers/awesome-readme)
+- [Flask Login Documation](https://flask-login.readthedocs.io/en/latest/)
+- [Flask Documentation](https://flask.palletsprojects.com/en/3.0.x/)
+- [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 
