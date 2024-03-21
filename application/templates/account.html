@@ -62,16 +62,66 @@
       </nav>
 
       <!-- Uer Profile -->
-      <div class="content-section">
+      <!-- <div class="content-section">
         <div class="media">
-          <img class="rounded-circle account-img" src="userimage.jpg">
+          <img class="rounded-circle account-img" width="150px"  src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
           <div class="media-body">
             <h2 class="account-heading">{{ current_user.username }}</h2>
             <p class="text-secondary">{{ current_user.email }}</p>
           </div>
         </div>
-        <!-- FORM HERE -->
-      </div>
+      
+      </div> -->
+
+      <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">{{ current_user.username }}</span><span class="text-black-50">{{ current_user.email }}</span><span> </span></div>
+            </div>
+            <div class="col-md-8 border-right">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                <div class="p-3 py-5 form-group">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-8 form-group"><label class="form-control-label" for="username">Username</label><input type="text" class="form-control" placeholder="Update Your Username" id="username" value="{{ form.username.data or current_user.username}}" name="username">
+                            {% if form.username.errors %}
+                            <div class="col-md-12">
+                                {% for error in form.username.errors %}
+                                    <div class="alert alert-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        </div>
+                        <div class="col-md-8 form-group"><label class="form-control-label" for="email">Email</label><input type="text" class="form-control" placeholder="Update Your Email " id="email" value="{{ form.email.data or current_user.email }}" name="email">
+                            {% if form.email.errors %}
+                            <div class="col-md-12">
+                                {% for error in form.email.errors %}
+                                    <div class="alert alert-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}</div>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn" type="submit">Update</button></div>
+                </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+    </div>
       <!-- footer section -->
 
       <footer class="py-5 stl" style="background-color: #f8f9fa;  border-top: 1px solid lightgrey; height: 500px;">

@@ -119,3 +119,12 @@ body {
 .stl a {
   color: #4F345A;
 }
+
+form .btn{
+  background-color: #38A3A5;
+  color: white
+}
+form .btn:hover {
+  background-color: #11e2e2;
+  color: white;
+}

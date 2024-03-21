@@ -1,9 +1,12 @@
 from flask import render_template, url_for, flash, redirect, session, request
 from sqlalchemy import func
 from application import app, db, bcrypt
-from application.form import RegistrationForm, LoginForm
+from application.form import RegistrationForm, LoginForm, UpdateAccountForm 
 from application.models import User, Service, Booking, Review
 from flask_login import login_user, current_user, logout_user, login_required
+# import logging
+
+# logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 
 # Dictionary containing service data
@@ -144,11 +147,19 @@ def logout():
     return redirect(url_for('home'))
 
 # Route and function for user account
-@app.route('/account')
+@app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
     """This is a function that redirect user to it's profile """
-    return render_template('account.html', title='Account')
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        # logging.info(f'Form submitted - Username: {form.username.data}, Email: {form.email.data}')
+        return redirect(url_for('account'))
+    return render_template('account.html', title='Account', form=form)
 
 # Route and function for regular user dashboard
 @app.route('/user_dashboard', methods=['GET', 'POST'])
