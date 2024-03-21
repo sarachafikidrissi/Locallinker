@@ -155,6 +155,7 @@ def account():
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.email = form.email.data
+        current_user.service = form.service.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
         # logging.info(f'Form submitted - Username: {form.username.data}, Email: {form.email.data}')
