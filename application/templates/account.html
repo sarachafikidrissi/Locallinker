@@ -50,30 +50,28 @@
                 </li>
             </ul>
             <div class="btn-toolbar ms-auto" role="toolbar" aria-label="Toolbar with button groups">
-              {% if current_user.is_authenticated %}
               <div class="btn-group me-2" role="group" aria-label="First group">
                 <a href="{{ url_for('account') }}"><button type="button" class="btn" style="background-color: #8FA998; color: white;">Account</button></a>
             </div>
               <div class="btn-group me-2" role="group" aria-label="First group">
                 <a href="{{ url_for('logout') }}"><button type="button" class="btn" style="background-color: #8FA998; color: white;">Logout</button></a>
             </div>
-              {% else %}
-              <div class="btn-group me-2" role="group" aria-label="First group">
-                  <a href="{{ url_for('login') }}"><button type="button" class="btn" style="background-color: #8FA998; color: white;">Sign In</button></a>
-              </div>
-              <div class="btn-group me-2" role="group" aria-label="First group">
-                  <a href="{{ url_for('register') }}"><button type="button" class="btn" style="background-color: #38A3A5; color: white;" >Register</button></a>
-              </div>
-              {% endif %}
              </div>
         </div>
       </div>
       </nav>
 
-      <!-- Hero Section -->
-      <section class="hero">
-        <h1>{{ current_user.username }} Dashboard</h1>
-      </section>
+      <!-- Uer Profile -->
+      <div class="content-section">
+        <div class="media">
+          <img class="rounded-circle account-img" src="userimage.jpg">
+          <div class="media-body">
+            <h2 class="account-heading">{{ current_user.username }}</h2>
+            <p class="text-secondary">{{ current_user.email }}</p>
+          </div>
+        </div>
+        <!-- FORM HERE -->
+      </div>
       <!-- footer section -->
 
       <footer class="py-5 stl" style="background-color: #f8f9fa;  border-top: 1px solid lightgrey; height: 500px;">

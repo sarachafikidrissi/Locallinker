@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///locallinker.db'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
-
+login_manager.login_view = 'login' #sends user to login page if he tries to access /account route
+login_manager.login_message_category = 'info'
 
 from application import views

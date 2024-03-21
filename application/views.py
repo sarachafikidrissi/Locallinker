@@ -1,9 +1,9 @@
-from flask import render_template, url_for, flash, redirect, session
+from flask import render_template, url_for, flash, redirect, session, request
 from sqlalchemy import func
 from application import app, db, bcrypt
 from application.form import RegistrationForm, LoginForm
 from application.models import User, Service, Booking, Review
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 
 # Dictionary containing service data
@@ -122,9 +122,10 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
             session['user_id'] = user.id
             if user.user_type == 'regular':
-                return redirect(url_for('user_dashboard'))
+                return redirect(next_page) if next_page else redirect(url_for('user_dashboard'))
             elif user.user_type == 'provider':
                 return redirect(url_for('provider_dashboard'))
             flash('Login successful', 'success')
@@ -141,6 +142,13 @@ def logout():
     session.pop('user_id', None)
     flash('You have been logged out', 'success')
     return redirect(url_for('home'))
+
+# Route and function for user account
+@app.route('/account')
+@login_required
+def account():
+    """This is a function that redirect user to it's profile """
+    return render_template('account.html', title='Account')
 
 # Route and function for regular user dashboard
 @app.route('/user_dashboard', methods=['GET', 'POST'])
