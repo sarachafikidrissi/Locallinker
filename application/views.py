@@ -109,8 +109,6 @@ def register():
         if user.user_type == 'provider':
             service = Service.query.filter(func.lower(Service.title) == user_service).first()
             if service:
-                # service.provider_id = user.id
-                # db.session.commit()
                 user_service_entry = user_services.insert().values(user_id=user.id, service_id=service.id)
                 db.session.execute(user_service_entry)
                 db.session.commit()
