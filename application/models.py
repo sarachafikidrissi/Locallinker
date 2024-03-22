@@ -3,7 +3,10 @@
 from application import db, login_manager
 from flask_login import UserMixin
 
-
+user_services = db.Table('user_services',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('service_id', db.Integer, db.ForeignKey('service.id'), primary_key=True)
+)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -32,6 +35,8 @@ class Service(db.Model):
     description = db.Column(db.Text)
     price = db.Column(db.Float, nullable=True)
     created_at = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now())
+
+    providers = db.relationship('User', secondary=user_services, backref=db.backref('services', lazy='dynamic'))
 
 
 class Booking(db.Model):

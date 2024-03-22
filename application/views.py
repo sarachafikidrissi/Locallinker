@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, session, request
 from sqlalchemy import func
 from application import app, db, bcrypt
 from application.form import RegistrationForm, LoginForm, UpdateAccountForm 
-from application.models import User, Service, Booking, Review
+from application.models import User, Service, Booking, Review, user_services
 from flask_login import login_user, current_user, logout_user, login_required
 # import logging
 
@@ -109,7 +109,10 @@ def register():
         if user.user_type == 'provider':
             service = Service.query.filter(func.lower(Service.title) == user_service).first()
             if service:
-                service.provider_id = user.id
+                # service.provider_id = user.id
+                # db.session.commit()
+                user_service_entry = user_services.insert().values(user_id=user.id, service_id=service.id)
+                db.session.execute(user_service_entry)
                 db.session.commit()
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
