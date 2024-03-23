@@ -112,6 +112,20 @@
                                 {% endfor %}
                             </div>
                         {% endif %}</div>
+                        <div class="col-md-8 form-group">
+                            <label for="service" class="form-control-label">Your Primary Service</label>
+                            <div class="dropdown-arrow-wrapper">
+                                <select name="service" id="service" class="form-control">
+                                    {% for value, label in form.service.choices %}
+                                        {% if value == current_user.service %}
+                                        <option value="{{ value }}" selected>{{ label }}</option>
+                                    {% else %}
+                                        <option value="{{ value }}">{{ label }}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                    </div>
                     </div>
                     <div class="mt-5 text-center"><button class="btn" type="submit">Update</button></div>
                 </div>

@@ -1,12 +1,12 @@
 from flask import render_template, url_for, flash, redirect, session, request
 from sqlalchemy import func
 from application import app, db, bcrypt
-from application.form import RegistrationForm, LoginForm, UpdateAccountForm 
+from application.form import RegistrationForm, LoginForm, UpdateAccountForm , UpdateProviderAccountForm
 from application.models import User, Service, Booking, Review, user_services
 from flask_login import login_user, current_user, logout_user, login_required
-# import logging
+import logging
 
-# logging.basicConfig(filename='app.log', level=logging.DEBUG)
+logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 
 # Dictionary containing service data
@@ -156,12 +156,26 @@ def account():
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.email = form.email.data
-        current_user.service = form.service.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
         # logging.info(f'Form submitted - Username: {form.username.data}, Email: {form.email.data}')
         return redirect(url_for('account'))
     return render_template('account.html', title='Account', form=form)
+
+@app.route('/provider_ccount', methods=['GET', 'POST'])
+@login_required
+def provider_account():
+    """This is a function that redirect user to it's profile """
+    form = UpdateProviderAccountForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        current_user.service = form.service.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        logging.info(f'Form submitted - Username: {form.username.data}, Email: {form.email.data}, Service: {form.service.data}')
+        return redirect(url_for('provider_account'))
+    return render_template('provider_account.html', title='Account', form=form)
 
 # Route and function for regular user dashboard
 @app.route('/user_dashboard', methods=['GET', 'POST'])
