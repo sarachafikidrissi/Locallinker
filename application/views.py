@@ -1,12 +1,15 @@
+import os
+import secrets
+# from PIL import Image
 from flask import render_template, url_for, flash, redirect, session, request
 from sqlalchemy import func
 from application import app, db, bcrypt
 from application.form import RegistrationForm, LoginForm, UpdateAccountForm , UpdateProviderAccountForm
 from application.models import User, Service, Booking, Review, user_services
 from flask_login import login_user, current_user, logout_user, login_required
-import logging
+# import logging
 
-logging.basicConfig(filename='app.log', level=logging.DEBUG)
+# logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 
 # Dictionary containing service data
@@ -147,6 +150,15 @@ def logout():
     flash('You have been logged out', 'success')
     return redirect(url_for('home'))
 
+
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
+    form_picture.save(picture_path)
+
+    return picture_fn
 # Route and function for user account
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
@@ -154,13 +166,17 @@ def account():
     """This is a function that redirect user to it's profile """
     form = UpdateAccountForm()
     if form.validate_on_submit():
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+            current_user.image_file = picture_file
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
         # logging.info(f'Form submitted - Username: {form.username.data}, Email: {form.email.data}')
         return redirect(url_for('account'))
-    return render_template('account.html', title='Account', form=form)
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    return render_template('account.html', title='Account', image_file=image_file, form=form)
 
 @app.route('/provider_ccount', methods=['GET', 'POST'])
 @login_required

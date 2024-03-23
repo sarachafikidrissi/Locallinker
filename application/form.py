@@ -2,6 +2,7 @@
 
 # Import necessary modules and classes from Flask and WTForms
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
@@ -50,6 +51,7 @@ class LoginForm(FlaskForm):
 
     submit = SubmitField('Login')
 
+    
 # Update user profile Form
 class UpdateAccountForm(FlaskForm):
     """ A class that defines form fields using WTForms and provide
@@ -59,6 +61,7 @@ class UpdateAccountForm(FlaskForm):
 
     email = StringField('Email', validators=[DataRequired(), Email()])
 
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
 
     def validate_username(self, username):
@@ -85,7 +88,6 @@ class UpdateProviderAccountForm(FlaskForm):
 
     email = StringField('Email', validators=[DataRequired(), Email()])
 
-    # to be added in the provider profile account
     service = SelectField('Your Primary Service', choices=[('home cleaning' ,'Home Cleaning'), ('plumbing' ,'plumbing'), ('general handyman' ,'General Handyman'), ('event planning' ,'Event Planning'), ('assembly' ,'Assembly'), ('electrical' ,'Electrical')], validators=[DataRequired()])
 
     submit = SubmitField('Update')
