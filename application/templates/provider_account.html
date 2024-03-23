@@ -76,7 +76,7 @@
       <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
             <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">{{ current_user.username }}</span><span class="text-black-50">{{ current_user.email }}</span><span> </span></div>
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{ image_file }}"><span class="font-weight-bold">{{ current_user.username }}</span><span class="text-black-50">{{ current_user.email }}</span><span> </span></div>
             </div>
             <div class="col-md-8 border-right">
                 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -124,8 +124,19 @@
                                     {% endif %}
                                     {% endfor %}
                                 </select>
-                            </div>
+                            </div> 
                     </div>
+                    <div class="form-group">
+                      {{ form.picture.label() }}
+                      <br>
+                      {{ form.picture(class="form-control-file") }}
+                      <br>
+                      {% if form.picture.errors %}
+                          {% for error in form.picture.errors %}
+                              <span class="text-danger">{{ error }}</span></br>
+                          {% endfor %}
+                      {% endif %}
+                  </div>
                     </div>
                     <div class="mt-5 text-center"><button class="btn" type="submit">Update</button></div>
                 </div>

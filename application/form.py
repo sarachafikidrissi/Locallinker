@@ -88,6 +88,8 @@ class UpdateProviderAccountForm(FlaskForm):
 
     email = StringField('Email', validators=[DataRequired(), Email()])
 
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    
     service = SelectField('Your Primary Service', choices=[('home cleaning' ,'Home Cleaning'), ('plumbing' ,'plumbing'), ('general handyman' ,'General Handyman'), ('event planning' ,'Event Planning'), ('assembly' ,'Assembly'), ('electrical' ,'Electrical')], validators=[DataRequired()])
 
     submit = SubmitField('Update')

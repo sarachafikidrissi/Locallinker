@@ -184,14 +184,17 @@ def provider_account():
     """This is a function that redirect user to it's profile """
     form = UpdateProviderAccountForm()
     if form.validate_on_submit():
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+            current_user.image_file = picture_file
         current_user.username = form.username.data
         current_user.email = form.email.data
         current_user.service = form.service.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
-        logging.info(f'Form submitted - Username: {form.username.data}, Email: {form.email.data}, Service: {form.service.data}')
         return redirect(url_for('provider_account'))
-    return render_template('provider_account.html', title='Account', form=form)
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    return render_template('provider_account.html', title='Account', image_file=image_file, form=form)
 
 # Route and function for regular user dashboard
 @app.route('/user_dashboard', methods=['GET', 'POST'])
