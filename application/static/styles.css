@@ -128,3 +128,37 @@ form .btn:hover {
   background-color: #11e2e2;
   color: white;
 }
+
+/* user dashboard styling */
+.search-box {
+  width: 800px;
+  margin: 90px auto;
+}
+.list {
+  background-color: white;
+  width: 725px;
+  padding: 10px;
+}
+
+.result-box {
+  width: 725px;
+  background-color: white;
+  border-radius: 10px;
+}
+.result-box ul {
+  border-top: 1px solid #999;
+  padding: 15px 10px;
+  max-height: scroll;
+}
+
+
+.result-box ul li {
+  /* margin-bottom: 10px; */
+  list-style: none;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+.result-box ul li:hover {
+  background-color: #e9f3ff;
+}

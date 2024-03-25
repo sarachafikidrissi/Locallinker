@@ -199,8 +199,9 @@ def provider_account():
 # Route and function for regular user dashboard
 @app.route('/user_dashboard', methods=['GET', 'POST'])
 def user_dashboard():
+    items = ['Home Cleaning', 'Plumbing']
     """ This is a function that redirect regular user to his/her dashboard """
-    return render_template('user_dashboard.html', title='Dashboard')
+    return render_template('user_dashboard.html', title='Dashboard', items=items)
 
 # Route and function for provider dashboard
 @app.route('/provider_dashboard',  methods=['GET', 'POST'])
