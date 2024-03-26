@@ -4,7 +4,7 @@ import secrets
 from flask import render_template, url_for, flash, redirect, session, request
 from sqlalchemy import func
 from application import app, db, bcrypt
-from application.form import RegistrationForm, LoginForm, UpdateAccountForm , UpdateProviderAccountForm
+from application.form import RegistrationForm, LoginForm, UpdateAccountForm , UpdateProviderAccountForm, SelectingForm
 from application.models import User, Service, Booking, Review, user_services
 from flask_login import login_user, current_user, logout_user, login_required
 # import logging
@@ -215,3 +215,13 @@ def services():
     """ This is a function that redirect user to service page"""
     services = Service.query.all()
     return render_template('services.html', title='Services', services=services, service_list=services_data)
+
+@app.route('/book', methods=['GET', 'POST'])
+def book_service():
+    form = SelectingForm()
+
+    if form.validate_on_submit():
+        choosen_service = form.input.data
+        service_id = Service.query.filter(func.lower(Service.title) == choosen_service)
+
+        return render_template('booking_form.html', form=form, title='Booking', service_id=service_id)
