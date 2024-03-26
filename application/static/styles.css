@@ -114,17 +114,17 @@ body {
 
 /* Footer Styling */
 footer {
-  background-color: #f8f9fa;
+  /* background-color: #f8f9fa; */
   border-top: 1px solid lightgrey;
   height: 400px;
 }
 .stl {
-  color: #4F345A;;
-  background-color: #f8f9fa;
+  color: rgb(177, 185, 195);
+  background-color: #67727e;;
   border-top: 1px solid lightgrey;
 }
-.stl a {
-  color: #4F345A;
+.stl a, .stl p {
+  color: rgb(255, 255, 255);
 }
 
 form .btn{
