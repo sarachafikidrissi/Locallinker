@@ -2,6 +2,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 
@@ -110,7 +113,11 @@ body {
 }
 
 /* Footer Styling */
-
+footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid lightgrey;
+  height: 400px;
+}
 .stl {
   color: #4F345A;;
   background-color: #f8f9fa;
@@ -161,4 +168,13 @@ form .btn:hover {
 }
 .result-box ul li:hover {
   background-color: #e9f3ff;
+}
+
+@media all and (max-width: 800px){
+  .search-box {
+    width: 400px;
+  }
+  html, body {
+    overflow-x: hidden;
+  }
 }
