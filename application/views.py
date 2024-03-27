@@ -4,7 +4,7 @@ import secrets
 from flask import render_template, url_for, flash, redirect, session, request
 from sqlalchemy import func
 from application import app, db, bcrypt
-from application.form import RegistrationForm, LoginForm, UpdateAccountForm , UpdateProviderAccountForm, SelectingForm
+from application.form import RegistrationForm, LoginForm, UpdateAccountForm , UpdateProviderAccountForm
 from application.models import User, Service, Booking, Review, user_services
 from flask_login import login_user, current_user, logout_user, login_required
 # import logging
@@ -199,9 +199,11 @@ def provider_account():
 # Route and function for regular user dashboard
 @app.route('/user_dashboard', methods=['GET', 'POST'])
 def user_dashboard():
-    items = ['Home Cleaning', 'Plumbing']
     """ This is a function that redirect regular user to his/her dashboard """
-    return render_template('user_dashboard.html', title='Dashboard', items=items)
+    if request.method == 'POST':
+        selected_service = request.form.get('input')
+        return redirect(url_for('booking_form', service=selected_service))
+    return render_template('user_dashboard.html', title='Dashboard')
 
 # Route and function for provider dashboard
 @app.route('/provider_dashboard',  methods=['GET', 'POST'])
@@ -216,12 +218,6 @@ def services():
     services = Service.query.all()
     return render_template('services.html', title='Services', services=services, service_list=services_data)
 
-@app.route('/book', methods=['GET', 'POST'])
-def book_service():
-    form = SelectingForm()
-
-    if form.validate_on_submit():
-        choosen_service = form.input.data
-        service_id = Service.query.filter(func.lower(Service.title) == choosen_service)
-
-        return render_template('booking_form.html', form=form, title='Booking', service_id=service_id)
+@app.route('/book/<service>', methods=['GET', 'POST'])
+def booking_form(service):
+    return render_template('booking_form.html', title='Booking', service=service)

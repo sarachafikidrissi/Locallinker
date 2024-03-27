@@ -14,7 +14,7 @@
     <div class="container mt-5">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-8">
-                <form id="regForm">
+                <form id="regForm" method="POST">
                     <h1 id="register">Survey Form</h1>
                     <div class="all-steps" id="all-steps"> 
                       <span class="step"><i class="fa fa-phone"></i></span> 
@@ -30,7 +30,7 @@
                       </div>
                     <div class="tab">
                       <h6>What's your city?</h6>
-                        <p><input placeholder="City" oninput="this.className = ''" name="dd"></p>
+                        <p><input placeholder="City" oninput="this.className = ''" name="city"></p>
                         
                     </div>
                     <div class="tab">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="tab">
                         <h6>Tell us the details of your task</h6>
-                        <p><input placeholder="Provide a Summary of what you need done for your Tasker." oninput="this.className = ''" name="uname"></p>
+                        <p><input placeholder="Provide a Summary of what you need done for your Tasker." oninput="this.className = ''" name="description"></p>
                     </div>
     
                     <div class="thanks-message text-center" id="text-message"> <img src="../static/Images/thankyou.jpg" width="400" class="mb-4">

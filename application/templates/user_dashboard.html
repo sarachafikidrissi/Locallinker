@@ -131,7 +131,7 @@
       <h1>{{ current_user.username }} Dashboard</h1>
       <div class="container-fluid search-box ">
         <h1 class="text-center">Book a Service</h1>
-        <form class="d-flex">
+        <form class="d-flex" method="POST" action="{{ url_for('user_dashboard') }}">
           <input
             id="input-box"
             name = "input"

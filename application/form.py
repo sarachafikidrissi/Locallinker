@@ -111,5 +111,5 @@ class UpdateProviderAccountForm(FlaskForm):
                 raise ValidationError('That email is taken. Please choose different one.')
 
 class SelectingForm(FlaskForm):
-    input = StringField('Input') 
-    Submit = SubmitField('Search')
+    input = StringField('input') 
+    Submit = SubmitField('submit')
