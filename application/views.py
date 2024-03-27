@@ -5,7 +5,7 @@ from flask import render_template, url_for, flash, redirect, session, request
 from sqlalchemy import func
 from application import app, db, bcrypt
 from application.form import RegistrationForm, LoginForm, UpdateAccountForm , UpdateProviderAccountForm
-from application.models import User, Service, Booking, Review, user_services
+from application.models import User, Service, Booking, Review, user_services, Booking
 from flask_login import login_user, current_user, logout_user, login_required
 # import logging
 
@@ -220,4 +220,25 @@ def services():
 
 @app.route('/book/<service>', methods=['GET', 'POST'])
 def booking_form(service):
+    if request.method == 'POST':
+        phone_number = request.form.get('phone_number')
+        city = request.form.get('city')
+        email = request.form.get('email')
+        task_summary = request.form.get('description')
+
+        inputed_service = Service.query.filter(func.lower(Service.title) == service).first()
+        if inputed_service:
+            inputed_service_id= inputed_service.id
+
+        # Create new Booking instance
+        new_booking = Booking(
+            user_id = current_user.id,
+            service_id = inputed_service_id,
+            user_city = city,
+            phone_number = phone_number,
+            email = email,
+            task_summary = task_summary,
+        )
+        db.session.add(new_booking)
+        db.session.commit()
     return render_template('booking_form.html', title='Booking', service=service)

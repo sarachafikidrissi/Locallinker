@@ -52,8 +52,7 @@ class Booking(db.Model):
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=False)
     booking_date = db.Column(db.TIMESTAMP, nullable=False)
     status = db.Column(db.String(50), nullable=False, default=BookingStatus.PENDING)
-    user_city = db.Column(db.String(100), nullable=False)  
-    user_address = db.Column(db.String(255), nullable=False)  
+    user_city = db.Column(db.String(100), nullable=False)
     phone_number = db.Column(db.String(20), nullable=False)  
     task_details = db.Column(db.Text, nullable=False)
 
