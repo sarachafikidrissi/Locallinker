@@ -231,6 +231,10 @@ def booking_form(service):
     if inputed_service:
         inputed_service_id= inputed_service.id
         logging.debug('Decoded Service: %s', inputed_service_id)
+    # get user_id of service provider:
+    user_ids = db.session.query(User.id).join(User.services).filter(Service.id == inputed_service_id).all()
+    user_ids_list = [user_id[0] for user_id in user_ids]
+    logging.debug('service_provider_id: %s', user_ids_list)
     if request.method == 'POST':
         phone_number = request.form.get('phone_number')
         city = request.form.get('city')
