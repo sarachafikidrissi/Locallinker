@@ -50,11 +50,13 @@ class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=False)
-    booking_date = db.Column(db.TIMESTAMP, nullable=False)
+    booking_date = db.Column(db.TIMESTAMP, nullable=False, server_default=db.func.now())
     status = db.Column(db.String(50), nullable=False, default=BookingStatus.PENDING)
     user_city = db.Column(db.String(100), nullable=False)
     phone_number = db.Column(db.String(20), nullable=False)  
-    task_details = db.Column(db.Text, nullable=False)
+    email = db.Column(db.String(100), nullable=False, unique=True)
+    task_summary = db.Column(db.Text, nullable=False)
+    
 
 class Review(db.Model):
     """ This is a Class that represents review in the database """

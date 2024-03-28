@@ -109,3 +109,10 @@ class UpdateProviderAccountForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('That email is taken. Please choose different one.')
+            
+
+# class Bookingform(FlaskForm):
+#     phone_number = StringField('Phone Number', validators=[DataRequired()])
+#     city = StringField('City', validators=[DataRequired()])
+#     email = StringField('Email', validators=[DataRequired(), Email()])
+#     description = TextAreaField('Task Description', validators=[DataRequired(), Length(min=10)])

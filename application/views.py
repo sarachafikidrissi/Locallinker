@@ -7,9 +7,12 @@ from application import app, db, bcrypt
 from application.form import RegistrationForm, LoginForm, UpdateAccountForm , UpdateProviderAccountForm
 from application.models import User, Service, Booking, Review, user_services, Booking
 from flask_login import login_user, current_user, logout_user, login_required
-# import logging
+from urllib.parse import unquote
+from datetime import datetime
+import logging
 
-# logging.basicConfig(filename='app.log', level=logging.DEBUG)
+logging.basicConfig(filename='app.log', level=logging.DEBUG)
+# logging.basicConfig(level=logging.DEBUG)
 
 
 # Dictionary containing service data
@@ -202,6 +205,7 @@ def user_dashboard():
     """ This is a function that redirect regular user to his/her dashboard """
     if request.method == 'POST':
         selected_service = request.form.get('input')
+        logging.debug('Selected Service: %s', selected_service)
         return redirect(url_for('booking_form', service=selected_service))
     return render_template('user_dashboard.html', title='Dashboard')
 
@@ -220,15 +224,19 @@ def services():
 
 @app.route('/book/<service>', methods=['GET', 'POST'])
 def booking_form(service):
+    decoded_service = unquote(service)
+    logging.debug('Decoded Service: %s', decoded_service)
+    inputed_service = Service.query.filter((Service.title) == decoded_service).first()
+    logging.debug('Inputed Service: %s', inputed_service)
+    if inputed_service:
+        inputed_service_id= inputed_service.id
+        logging.debug('Decoded Service: %s', inputed_service_id)
     if request.method == 'POST':
         phone_number = request.form.get('phone_number')
         city = request.form.get('city')
         email = request.form.get('email')
         task_summary = request.form.get('description')
-
-        inputed_service = Service.query.filter(func.lower(Service.title) == service).first()
-        if inputed_service:
-            inputed_service_id= inputed_service.id
+        booking_date = datetime.now()
 
         # Create new Booking instance
         new_booking = Booking(
@@ -238,7 +246,8 @@ def booking_form(service):
             phone_number = phone_number,
             email = email,
             task_summary = task_summary,
+            booking_date = booking_date
         )
         db.session.add(new_booking)
         db.session.commit()
-    return render_template('booking_form.html', title='Booking', service=service)
+    return render_template('booking_form.html', title='Booking', service=decoded_service)

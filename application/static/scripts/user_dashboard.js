@@ -40,3 +40,12 @@ function selectInput(list){
     inputBox.value = list.innerHTML; //to show the selected input in the search box
     resultBox.innerHTML = ''; //to hide everything after selecting
 }
+
+function submitFormOrNext() {
+    // Check if the current tab is the last one
+    if (currentTab == (tab.length - 1)) {
+        document.getElementById("regForm").submit(); // Submit the form
+    } else {
+        nextPrev(1); // Go to the next tab
+    }
+}
