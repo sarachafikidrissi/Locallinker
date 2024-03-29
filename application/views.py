@@ -9,10 +9,10 @@ from application.models import User, Service, Booking, Review, user_services, Bo
 from flask_login import login_user, current_user, logout_user, login_required
 from urllib.parse import unquote
 from datetime import datetime
-import logging
+# import logging
 
-logging.basicConfig(filename='app.log', level=logging.DEBUG)
-# logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(filename='app.log', level=logging.DEBUG)
+
 
 
 # Dictionary containing service data
@@ -205,7 +205,7 @@ def user_dashboard():
     """ This is a function that redirect regular user to his/her dashboard """
     if request.method == 'POST':
         selected_service = request.form.get('input')
-        logging.debug('Selected Service: %s', selected_service)
+        # logging.debug('Selected Service: %s', selected_service)
         return redirect(url_for('booking_form', service=selected_service))
     return render_template('user_dashboard.html', title='Dashboard')
 
@@ -225,16 +225,16 @@ def services():
 @app.route('/book/<service>', methods=['GET', 'POST'])
 def booking_form(service):
     decoded_service = unquote(service)
-    logging.debug('Decoded Service: %s', decoded_service)
+    # logging.debug('Decoded Service: %s', decoded_service)
     inputed_service = Service.query.filter((Service.title) == decoded_service).first()
-    logging.debug('Inputed Service: %s', inputed_service)
+    # logging.debug('Inputed Service: %s', inputed_service)
     if inputed_service:
         inputed_service_id= inputed_service.id
-        logging.debug('Decoded Service: %s', inputed_service_id)
+        # logging.debug('Decoded Service: %s', inputed_service_id)
     # get user_id of service provider:
     user_ids = db.session.query(User.id).join(User.services).filter(Service.id == inputed_service_id).all()
     user_ids_list = [user_id[0] for user_id in user_ids]
-    logging.debug('service_provider_id: %s', user_ids_list)
+    # logging.debug('service_provider_id: %s', user_ids_list)
     if request.method == 'POST':
         phone_number = request.form.get('phone_number')
         city = request.form.get('city')
